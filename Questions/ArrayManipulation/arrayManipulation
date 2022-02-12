@@ -1,0 +1,54 @@
+#include <bits/stdc++.h>
+
+using namespace std;
+
+
+void arrayManipulation(long int* &arr, int a,int b,long int k, long int& max) 
+{
+    for(int i=a-1;i<b;++i)
+    {
+        arr[i]+=k;
+        if(max<arr[i])
+        {
+            max=arr[i];
+        }
+    }
+}
+
+int main()
+{
+    int n,m;
+    cin>>n>>m;
+    long int** operations =new long int*[m];
+    for( int i=0;i<m;++i)
+    {
+        operations[i]=new long int[3];
+    }
+    for( int i=0;i<m;++i)
+    {
+        for( int j=0;j<3;j++)
+        {
+            cin>>operations[i][j];
+        }
+    }
+    
+    long int* arr=new long int[n];
+    for(int i=0;i<n;++i)
+    {
+        arr[i]=0;
+    }
+    long int max=-1;
+        
+    for(int i=0;i<m;++i)
+    {
+        int a=operations[i][0];
+        int b=operations[i][1];
+        int k=operations[i][2];
+        
+        arrayManipulation(arr, a, b, k, max);
+    }
+    
+    cout<<max<<endl;
+    return 0;
+}
+

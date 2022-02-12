@@ -1,0 +1,40 @@
+#include <bits/stdc++.h>
+
+using namespace std;
+
+//this is a trick to solve the actual problem in O(n), because we dont actually modify the array we just track the max value that could be there in the array, if the problem required us to return the array then this solution wont work
+
+int main()
+{
+    int arr_len,n_op;
+    cin>>arr_len>>n_op;
+    
+    vector<long int> arr(arr_len+1,0); // create an array or length =array_len+1 , in order to store the additional element
+    int a,b;
+    long int k;
+    
+    for(int i=0;i<n_op;++i)
+    {
+        //add k to (a-1)th element and substract k from the bth element
+        cin>>a>>b>>k;
+        
+        arr[a-1]+=k;
+        
+        arr[b]-=k;
+        
+    }
+    long int sum=0,max=0;
+    for(int i=0;i<arr_len+1;++i)
+    {
+        //calculating the sum of all the elements present in the array , which should add up to 0, but we store only the max sum
+        sum+= arr[i];
+        if(max<sum)
+        {
+            max=sum;
+        }   
+    }
+    cout<<max<<endl;
+     
+    return 0;
+}
+

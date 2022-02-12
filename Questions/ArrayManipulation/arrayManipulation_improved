@@ -1,0 +1,41 @@
+#include <bits/stdc++.h>
+
+using namespace std;
+
+
+long arrayManipulation(long int arr_len, vector<vector<long int>> &op) 
+{
+    vector<long int> arr(arr_len,0);
+    
+    for(auto vector: op)
+    {
+        for(int j= vector[0]-1;j<vector[1];++j)
+        {
+            arr[j]+=vector[2];
+        }
+    }
+    
+    return *max_element(arr.begin(),arr.end());
+}
+
+int main()
+{
+    int arr_len,n_op;
+    cin>>arr_len>>n_op;
+    
+    vector<vector<long int>> op(n_op,vector<long int> (3, 0));
+    
+    for(int i=0;i<n_op;++i)
+    {
+        cin>>op[i][0]>>op[i][1]>>op[i][2];
+    }
+    
+    cout<<arrayManipulation(arr_len, op);
+    
+    
+    
+    
+    
+    return 0;
+}
+
